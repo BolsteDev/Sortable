@@ -216,7 +216,7 @@
 			forceFallback: false,
 			fallbackClass: 'sortable-fallback',
 			fallbackOnBody: false,
-      lockAxis: false
+			lockAxis: false
 		};
 
 
@@ -486,17 +486,17 @@
 					dy = touch.clientY - tapEvt.clientY,
 					translate3d = '';
 
-          if(evt.touches) {
-            translate3d =  'translate3d(' + dx + 'px,' + dy + 'px)';
-          }
-          else {
-            if(Sortable.lockAxis) {
-              translate3d = 'translateY(' dy + 'px)';
-            }
-            else {
-              translate3d = 'translate(' + dx + 'px,' + dy + 'px)';
-            }
-          }
+				if(evt.touches) {
+					translate3d =  'translate3d(' + dx + 'px,' + dy + 'px)';
+				}
+				else {
+					if(Sortable.lockAxis) {
+						translate3d = 'translateY(' dy + 'px)';
+					}
+					else {
+						translate3d = 'translate(' + dx + 'px,' + dy + 'px)';
+					}
+				}
 
 				moved = true;
 				touchEvt = touch;
