@@ -23,7 +23,7 @@
 	}
 })(function () {
 	"use strict";
-	
+
 	if (typeof window == "undefined" || typeof window.document == "undefined") {
 		return function () {
 			throw new Error("Sortable.js requires a window with a document");
@@ -215,7 +215,8 @@
 			delay: 0,
 			forceFallback: false,
 			fallbackClass: 'sortable-fallback',
-			fallbackOnBody: false
+			fallbackOnBody: false.
+      lockAxis: false
 		};
 
 
@@ -400,11 +401,11 @@
 			}
 
 			try {
-				if (document.selection) {					
-					// Timeout neccessary for IE9					
+				if (document.selection) {
+					// Timeout neccessary for IE9
 					setTimeout(function () {
 						document.selection.empty();
-					});					
+					});
 				} else {
 					window.getSelection().removeAllRanges();
 				}
@@ -483,7 +484,19 @@
 				var touch = evt.touches ? evt.touches[0] : evt,
 					dx = touch.clientX - tapEvt.clientX,
 					dy = touch.clientY - tapEvt.clientY,
-					translate3d = evt.touches ? 'translate3d(' + dx + 'px,' + dy + 'px,0)' : 'translate(' + dx + 'px,' + dy + 'px)';
+					translate3d = '';
+
+          if(evt.touches) {
+            translate3d =  'translate3d(' + dx + 'px,' + dy + 'px)';
+          }
+          else {
+            if(Sortable.lockAxis) {
+              translate3d = 'translateY(' dy + 'px)';
+            }
+            else {
+              translate3d = 'translate(' + dx + 'px,' + dy + 'px)';
+            }
+          }
 
 				moved = true;
 				touchEvt = touch;
