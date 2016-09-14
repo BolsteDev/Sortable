@@ -215,7 +215,7 @@
 			delay: 0,
 			forceFallback: false,
 			fallbackClass: 'sortable-fallback',
-			fallbackOnBody: false.
+			fallbackOnBody: false,
       lockAxis: false
 		};
 
